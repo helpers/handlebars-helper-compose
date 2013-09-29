@@ -1,0 +1,9 @@
+{
+  "name": "helper-compose",
+  "version": "0.1.0",
+  "dependencies": {
+    "lodash": "~2.1.0",
+    "globule": "~0.1.0",
+    "assemble-yaml": "~0.1.5"
+  }
+}
