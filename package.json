@@ -1,6 +1,6 @@
 {
   "name": "helper-compose",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "{{compose}} handlebars helper. Inlines content from multiple files optionally using wildcard (globbing/minimatch) patterns, extracts YAML front matter to pass to context for each file. Accepts compare function as 3rd parameter for sorting inlined files.",
   "homepage": "https://github.com/helpers/helper-compose",
   "author": {
