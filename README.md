@@ -175,18 +175,17 @@ grunt.initConfig({
 
   // Metadata for our blog.
   blog: require('./test/fixtures/blog/blog.yml'),
-
   assemble: {
     options: {
       helpers: ['helper-compose'],
       compose: {
         cwd: 'blog',
         sep: '<!-- post -->'
-      },
-      blog: {
-        src: ['index.hbs'],
-        dest: 'blog/'
       }
+    },
+    blog: {
+      src: ['index.hbs'],
+      dest: 'blog/'
     }
   }
 });
@@ -197,10 +196,11 @@ Our `index.hbs` file contains the following:
 
 ```handlebars
 <!-- post -->
-{{#compose 'posts/*.hbs'}}
+{{#compose 'posts/*.hbs' sep="<!-- post -->"}}
   <h1>{{blog.title}}</h1>
   <h2>Post title: {{title}}</h2>
-  <p>Post {{{content}}}</p>
+  <p>{{{content}}}</p>
+  <a href="{{relative link}}">{{text}}</a>
 {{/compose}}
 ```
 
@@ -209,10 +209,10 @@ And the files we want to compose include these Lo-Dash and Handlebars templates:
 
 ```handlebars
 ---
-title: Alpha post
+title: Monday
 ---
 
-This is the {{title}}, which should be inserted in the composed result.
+This is the {{title}} post...
 ```
 
 The result, `blog/index.html` would contain something like:
@@ -228,18 +228,18 @@ The result, `blog/index.html` would contain something like:
 
     <!-- post -->
     <h1>My Brilliant Blog</h1>
-    <h2>Post title: Alpha</h2>
-    <p>Post This is the Alpha post, which should be inserted in the composed result. </p>
+    <h2>Post title: Monday</h2>
+    <p>This is the Monday post...</p>
 
     <!-- post -->
     <h1>My Brilliant Blog</h1>
-    <h2>Post title: Beta</h2>
-    <p>Post This is the Beta post, which should be inserted in the composed result. </p>
+    <h2>Post title: Tuesday</h2>
+    <p>This is the Tuesday post...</p>
 
     <!-- post -->
     <h1>My Brilliant Blog</h1>
-    <h2>Post title: Gamma</h2>
-    <p>Post This is the Gamma post, which should be inserted in the composed result. </p>
+    <h2>Post title: Wednesday</h2>
+    <p>This is the Wednesday post...</p>
   </body>
 </html>
 ```
@@ -254,5 +254,5 @@ The result, `blog/index.html` would contain something like:
 
 
 ## License and Copyright
-Licensed under the [MIT License](./LICENSE-MIT)
+Licensed under the [MIT License](./LICENSE-MIT).
 Copyright (c) Jon Schlinkert, contributors.

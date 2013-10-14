@@ -42,5 +42,10 @@
     "template filter",
     "underscore mixin",
     "underscore"
-  ]
+  ],
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt": "~0.4.1",
+    "grunt-readme": "~0.1.8"
+  }
 }
