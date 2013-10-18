@@ -28,7 +28,6 @@ module.exports.register = function(Handlebars, options) {
 
     // Default options
     var opts = {
-      sep: '\n',
       cwd: '',
       glob: {}
     };
@@ -39,41 +38,46 @@ module.exports.register = function(Handlebars, options) {
     var index = 0;
 
     // Join path to 'cwd' if defined in the helper's options
-    var cwd = path.join.bind(null, options.cwd, '');
+    var cwd = path.join.bind(null, options.hash.cwd || options.cwd);
+    grunt.verbose.ok("cwd:".yellow, cwd(src));
 
-    return glob.find(cwd(src), options.glob).map(function (path) {
-      var context = yfm.extract(path).context;
-      var content = yfm.extract(path).content;
+    options.sep = options.hash.sep || options.sep;
+
+    return glob.find(cwd(src), options.glob).map(function (file) {
+      var context = yfm.extract(file).context;
+      var content = yfm.extract(file).content;
       index += 1;
       return {
         index: index,
-        path: path,
+        file: file,
+        id: path.basename(file, path.extname(file)),
         context: processContext(grunt, _.defaults({content: content}, context)),
         content: content
       };
     }).sort(compare_fn).map(function (obj) {
+      // promote id into context
+      obj.context.id = obj.id;
       var template = Handlebars.compile(options.fn(obj.context));
       return new Handlebars.SafeString(template(obj.context));
     }).join(options.sep);
   });
 
+  /**
+   * Process templates using grunt config data and context
+   */
+  var processContext = function(grunt, context) {
+    grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
+    return grunt.config.process(grunt.config.data);
+  };
+
+  /**
+   * Accepts two objects (a, b),
+   * @param  {Object} a
+   * @param  {Object} b
+   * @return {Number} returns 1 if (a >= b), otherwise -1
+   */
+  var compareFn = function(a, b) {
+    return a.index >= b.index ? 1 : -1;
+  };
 };
 
-
-/**
- * Process templates using grunt config data and context
- */
-var processContext = function(grunt, context) {
-  grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
-  return grunt.config.process(grunt.config.data);
-};
-
-/**
- * Accepts two objects (a, b),
- * @param  {Object} a
- * @param  {Object} b
- * @return {Number} returns 1 if (a >= b), otherwise -1
- */
-var compareFn = function(a, b) {
-  return a.index >= b.index ? 1 : -1;
-};

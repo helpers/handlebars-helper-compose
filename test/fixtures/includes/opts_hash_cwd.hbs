@@ -1,0 +1,17 @@
+---
+title: Compose. Options hash cwd
+name: Compose. Options hash cwd
+---
+<!-- post -->
+{{#compose 'post-*.hbs' cwd="test/fixtures/includes"}}
+  <h1>{{blog.title}}</h1>
+  <h2>Post title: {{title}}</h2>
+  <p>Post {{{content}}}</p>
+
+  <p>Content from {{name}}.</p>
+  <ul class="tags">
+  {{#tags}}
+    <li>{{.}}</li>
+  {{/tags}}
+  </ul>
+{{/compose}}

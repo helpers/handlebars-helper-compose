@@ -1,0 +1,19 @@
+---
+title: Brilliant Book
+description: this is a description from "toc.hbs"
+---
+<h1>{{{title}}}</h1>
+
+<!-- post -->
+{{#compose 'book/*.hbs'}}
+  <h1>{{book.title}}</h1>
+  <h2>Post title: {{title}}</h2>
+  <p>Post {{{content}}}</p>
+
+  <p>Content from {{name}}.</p>
+  <ul class="tags">
+  {{#tags}}
+    <li>{{.}}</li>
+  {{/tags}}
+  </ul>
+{{/compose}}

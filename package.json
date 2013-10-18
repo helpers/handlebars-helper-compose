@@ -1,6 +1,6 @@
 {
   "name": "helper-compose",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "{{compose}} handlebars helper. Inlines content from multiple files optionally using wildcard (globbing/minimatch) patterns, extracts YAML front matter to pass to context for each file. Accepts compare function as 3rd parameter for sorting inlined files.",
   "homepage": "https://github.com/helpers/helper-compose",
   "author": {
@@ -46,6 +46,9 @@
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
     "grunt": "~0.4.1",
-    "grunt-readme": "~0.1.8"
+    "grunt-readme": "~0.1.8",
+    "grunt-contrib-clean": "~0.5.0",
+    "assemble": "~0.4.13",
+    "helper-prettify": "~0.1.7"
   }
 }

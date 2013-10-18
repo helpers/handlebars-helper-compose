@@ -27,7 +27,7 @@ grunt.initConfig({
 With that completed, you may now use the `{{compose}}` helper in your templates:
 
 ```handlebars
-{{compose 'path/to/files/*.hbs'}}
+{{compose 'blog/posts/*.md'}}
   <h1>Title: {{title}}</h1>
   {{{content}}}</p>
 {{/compose}}
@@ -99,7 +99,7 @@ assemble: {
 }
 ```
 
-Note that the options are defined in `options: {compose: {}}`, which is a [custom property](http://assemble.io/docs/Custom-Helpers.html) in the Assemble options.
+Note that the options are defined in `options: {compose: {}}`, which is registered by this helper as a [custom property](http://assemble.io/docs/Custom-Helpers.html) in the Assemble options.
 
 
 
