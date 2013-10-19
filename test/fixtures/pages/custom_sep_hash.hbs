@@ -1,19 +1,19 @@
 ---
-title: Custom sep
+title: Custom sep hash
 description: Custom separator defined in the options hash.
-zebra: "<!-- sep -->"
+sep: "<!-- sep -->"
 ---
-{{{zebra}}}
-{{#compose '**/*.hbs' sep=zebra}}
-  <a href="#{{id}}"></a>
-  <h1>{{blog.title}}</h1>
-  <h2>Post title: {{title}}</h2>
-  <p>Post {{{content}}}</p>
+{{{sep}}}
+{{#compose '**/*.hbs' sep=sep}}
+  <a class="anchor" href="#{{id}}"></a>
+  <h1 class="title">{{blog.title}}</h1>
+  <h2 class="subtitle">Post title: {{title}}</h2>
+  <p class="content">Post {{{content}}}</p>
 
-  <p>Content from {{name}}.</p>
+  <p class="origin">Content from {{name}}.</p>
   <ul class="tags">
   {{#tags}}
-    <li>{{.}}</li>
+    <li class="link">{{.}}</li>
   {{/tags}}
   </ul>
 {{/compose}}

@@ -1,23 +1,23 @@
 {
-  "name": "helper-compose",
-  "version": "0.1.2",
-  "description": "{{compose}} handlebars helper. Inlines content from multiple files optionally using wildcard (globbing/minimatch) patterns, extracts YAML front matter to pass to context for each file. Accepts compare function as 3rd parameter for sorting inlined files.",
-  "homepage": "https://github.com/helpers/helper-compose",
+  "name": "handlebars-helper-compose",
+  "version": "0.1.3",
+  "description": "{{compose}} handlebars helper. Inlines content from multiple files optionally using wildcard (globbing/minimatch) patterns, extracts YAML front matter to pass to context for each file. Accepts compare function as 3rd parameter for sorting inlined files. Good for blog posts, chapters, etc.",
+  "homepage": "https://github.com/helpers/handlebars-helper-compose",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/assemble/helper-compose.git"
+    "url": "https://github.com/helpers/handlebars-helper-compose.git"
   },
   "bugs": {
-    "url": "https://github.com/helpers/helper-compose/issues"
+    "url": "https://github.com/helpers/handlebars-helper-compose/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/helpers/helper-compose/blob/master/LICENSE-MIT"
+      "url": "https://github.com/helpers/handlebars-helper-compose/blob/master/LICENSE-MIT"
     }
   ],
   "dependencies": {

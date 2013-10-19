@@ -62,6 +62,7 @@ module.exports.register = function(Handlebars, options) {
     }).join(options.sep);
   });
 
+
   /**
    * Process templates using grunt config data and context
    */
@@ -69,6 +70,7 @@ module.exports.register = function(Handlebars, options) {
     grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
     return grunt.config.process(grunt.config.data);
   };
+
 
   /**
    * Accepts two objects (a, b),
