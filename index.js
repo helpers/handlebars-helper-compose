@@ -13,53 +13,60 @@
 var path  = require('path');
 
 // node_modules
-var grunt = require('grunt');
-var glob  = require('globule');
 var yfm   = require('assemble-yaml');
 var _     = require('lodash');
 
 
-module.exports.register = function(Handlebars, options) {
+module.exports.register = function(Handlebars, options, params) {
 
   // If the 'assemble.options' object exists, use it
-  var assembleOpts = options || {};
+  var opts     = options || {};
+  var grunt    = params.grunt;
+  var assemble = params.assemble;
+
 
   Handlebars.registerHelper("compose", function(src, options, compare_fn) {
+    var hash = options.hash || {};
 
     // Default options
-    var opts = {
+    options = _.extend({
       cwd: '',
+      sep: '',
       glob: {}
-    };
-    options = _.defaults(options, assembleOpts.compose, opts);
+    }, options, opts.data, opts.compose, hash);
 
-    var content;
+    // Join path to 'cwd' if defined in the helper's options
+    var cwd = path.join.bind(null, options.cwd);
+    grunt.verbose.ok("cwd:".yellow, cwd(src));
+
+    // Compare function, for sorting.
     compare_fn = (compare_fn || options.compare || compareFn);
     var index = 0;
 
-    // Join path to 'cwd' if defined in the helper's options
-    var cwd = path.join.bind(null, options.hash.cwd || options.cwd);
-    grunt.verbose.ok("cwd:".yellow, cwd(src));
-
-    options.sep = options.hash.sep || options.sep;
-
-    return glob.find(cwd(src), options.glob).map(function (file) {
+    var content;
+    var html = grunt.file.expand(options.glob, cwd(src)).map(function (file) {
       var context = yfm.extract(file).context;
       var content = yfm.extract(file).content;
+
       index += 1;
       return {
         index: index,
+        number: index + 1,
         file: file,
         id: path.basename(file, path.extname(file)),
         context: processContext(grunt, _.defaults({content: content}, context)),
         content: content
       };
     }).sort(compare_fn).map(function (obj) {
+
       // promote id into context
       obj.context.id = obj.id;
-      var template = Handlebars.compile(options.fn(obj.context));
-      return new Handlebars.SafeString(template(obj.context));
+      var template = Handlebars.compile(options.fn(obj.context) + obj.content);
+      return template(obj.context);
+
     }).join(options.sep);
+
+    return new Handlebars.SafeString(html);
   });
 
 

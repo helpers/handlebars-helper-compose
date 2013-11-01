@@ -1,0 +1,33 @@
+{
+  "link": "http://github.com/assemble/assemble/",
+  "default": {
+    "modifier": "alert-default",
+    "strong": "Foo",
+    "link": "You successfully read <a href=\"#\" class=\"alert-link\">this important alert message</a>.",
+    "text": "Not much going on here."
+  },
+  "success": {
+    "modifier": "alert-success",
+    "strong": "Well done!",
+    "link": "You successfully read <a href=\"#\" class=\"alert-link\">this important alert message</a>.",
+    "text": "You successfully read this important alert message."
+  },
+  "info": {
+    "modifier": "alert-info",
+    "strong": "Heads up!",
+    "link": " This <a href=\"#\" class=\"alert-link\">alert needs your attention</a>, but it's not super important.",
+    "text": " This alert needs your attention, but it's not super important."
+  },
+  "warning": {
+    "modifier": "alert-warning",
+    "strong": "Warning!",
+    "link": "Best check yo self, you're <a href=\"#\" class=\"alert-link\">not looking too good</a>.",
+    "text": "Best check yo self, you're not looking too good."
+  },
+  "danger": {
+    "modifier": "alert-danger",
+    "strong": "Oh snap!",
+    "link": "<a href=\"#\" class=\"alert-link\">Change a few things up</a>&nbsp;and try submitting again.",
+    "text": "Change a few things up and try submitting again."
+  }
+}

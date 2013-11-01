@@ -22,10 +22,15 @@
   ],
   "dependencies": {
     "assemble-yaml": "~0.1.5",
-    "globule": "~0.1.0",
-    "lodash": "~2.1.0",
-    "handlebars": "~1.0.12",
-    "grunt": "~0.4.1"
+    "lodash": "~2.1.0"
+  },
+  "devDependencies": {
+    "assemble": "~0.4.13",
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-readme": "~0.1.8",
+    "helper-prettify": "~0.1.7"
   },
   "keywords": [
     "convenience methods",
@@ -42,13 +47,5 @@
     "template filter",
     "underscore mixin",
     "underscore"
-  ],
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt": "~0.4.1",
-    "grunt-readme": "~0.1.8",
-    "grunt-contrib-clean": "~0.5.0",
-    "assemble": "~0.4.13",
-    "helper-prettify": "~0.1.7"
-  }
+  ]
 }

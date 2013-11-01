@@ -27,69 +27,73 @@ module.exports = function(grunt) {
     // Test config
     test: {
       fixtures: 'test/fixtures',
-      data: 'test/fixtures/data',
+      data    : 'test/fixtures/data',
+      layouts : 'test/fixtures/layouts',
       includes: 'test/fixtures/includes',
-      layouts: 'test/fixtures/layouts',
-      pages: 'test/fixtures/pages',
-      actual: 'test/actual'
+      posts   : 'test/fixtures/posts',
+      pages   : 'test/fixtures/pages',
+      actual  : 'test/actual'
     },
 
     assemble: {
       options: {
         flatten: true,
-        data: ['<%= book %>/data/book.yml'],
+        engine: 'handlebars',
+        data: ['<%= test.data %>/*.{yml,json}'],
         layout: '<%= test.layouts %>/default.hbs',
+        partials: ['<%= test.includes %>/*.hbs'],
         helpers: ['./index.js', 'helper-prettify'] // this helper
       },
 
       // No options defined
       no_opts_defined: {
+        src: ['<%= test.pages %>/full_path.hbs'],
+        dest: '<%= test.actual %>/no_opts_defined/',
         options: {
           compose: {}
-        },
-        src: ['<%= test.pages %>/full_path.hbs'],
-        dest: '<%= test.actual %>/no_opts_defined/'
+        }
       },
 
-      // Should use cwd defined in task options
+      // Should use cwd defined in task options (here)
       opts_cwd: {
+        src: ['<%= test.pages %>/opts_cwd.hbs'],
+        dest: '<%= test.actual %>/opts_cwd/',
         options: {
           compose: {
-            cwd: '<%= test.includes %>'
+            sep: '<!-- article -->',
+            cwd: '<%= test.posts %>'
           }
-        },
-        src: ['<%= test.pages %>/opts_cwd.hbs'],
-        dest: '<%= test.actual %>/cwd/'
+        }
       },
 
       // Should use cwd from options hash. Not sure why
       // someone would use this...
       opts_hash_cwd: {
-        src: ['<%= test.includes %>/opts_hash_cwd.hbs'],
+        src: ['<%= test.posts %>/opts_hash_cwd.hbs'],
         dest: '<%= test.actual %>/opts_hash_cwd/'
       },
 
       // Should use a custom separator between sections
       custom_separator_opts: {
+        src: ['<%= test.pages %>/custom_sep_opts.hbs'],
+        dest: '<%= test.actual %>/custom_separator_opts/',
         options: {
           compose: {
-            cwd: '<%= test.includes %>',
+            cwd: '<%= test.posts %>',
             sep: '<!-- CUSTOM SEPARATOR -->'
           }
-        },
-        src: ['<%= test.pages %>/custom_sep_opts.hbs'],
-        dest: '<%= test.actual %>/custom_separator_opts/'
+        }
       },
 
       // Should use a custom separator between sections
       custom_separator_hash: {
+        src: ['<%= test.pages %>/custom_sep_hash.hbs'],
+        dest: '<%= test.actual %>/custom_separator_hash/',
         options: {
           compose: {
-            cwd: '<%= test.includes %>'
+            cwd: '<%= test.posts %>'
           }
-        },
-        src: ['<%= test.pages %>/custom_sep_hash.hbs'],
-        dest: '<%= test.actual %>/custom_separator_hash/'
+        }
       },
 
       // // Basic compare function
