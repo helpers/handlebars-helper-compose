@@ -5,6 +5,14 @@
     <title>Options Cwd</title>
   </head>
   <body>
+    <ul class="pager ">
+      <li class="previous">
+        <a href="test/actual/opts_cwd/opts_cwd.html">&larr; Previous</a> 
+      </li>
+      <li class="next disabled">
+        <a href="test/actual/opts_cwd/opts_cwd.html">Next &rarr;</a> 
+      </li>
+    </ul>
 
     <!-- post -->
     <h1>My Brilliant Blog</h1> 
@@ -16,7 +24,7 @@
       <li>medium</li>
       <li>large</li>
     </ul>
-    ,
+    This is content from Alpha, which should be inserted.,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: Beta</h2> 
     <p>Post</p>
@@ -26,7 +34,7 @@
       <li>circle</li>
       <li>triangle</li>
     </ul>
-    ,
+    This is content from Beta, which should be inserted.,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: My Amazing Book</h2> 
     <p>Post</p>
@@ -36,7 +44,9 @@
       <li>e</li>
       <li>c</li>
     </ul>
-    ,
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 2</p>
+    <p class="chapter">Chapter: 2</p>,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: My Amazing Book</h2> 
     <p>Post</p>
@@ -46,7 +56,9 @@
       <li>lmn</li>
       <li>opq</li>
     </ul>
-    ,
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 1</p>
+    <p class="chapter">Chapter: 1</p>,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: My Amazing Book</h2> 
     <p>Post</p>
@@ -56,7 +68,9 @@
       <li>abc</li>
       <li>def</li>
     </ul>
-    ,
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 2</p>
+    <p class="chapter">Chapter: 2</p>,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: My Amazing Book</h2> 
     <p>Post</p>
@@ -66,6 +80,9 @@
       <li>lmn</li>
       <li>opq</li>
     </ul>
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 3</p>
+    <p class="chapter">Chapter: 3</p>
     ,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: My Amazing Book</h2> 
@@ -76,7 +93,9 @@
       <li>e</li>
       <li>f</li>
     </ul>
-    ,
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 3</p>
+    <p class="chapter">Chapter: 3</p>,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: My Amazing Book</h2> 
     <p>Post</p>
@@ -86,7 +105,9 @@
       <li>b</li>
       <li>c</li>
     </ul>
-    ,
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 1</p>
+    <p class="chapter">Chapter: 1</p>,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: Colors</h2> 
     <p>Post</p>
@@ -96,7 +117,12 @@
       <li>green</li>
       <li>red</li>
     </ul>
-    ,
+    <ul class="Colors">
+      Content from Colors.
+      <li>blue</li>
+      <li>green</li>
+      <li>red</li>
+    </ul>,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: Fruit</h2> 
     <p>Post</p>
@@ -106,7 +132,12 @@
       <li>banana</li>
       <li>orange</li>
     </ul>
-    ,
+    <ul class="Fruit">
+      Content from Fruit.
+      <li>apple</li>
+      <li>banana</li>
+      <li>orange</li>
+    </ul>,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: Gamma</h2> 
     <p>Post</p>
@@ -116,6 +147,8 @@
       <li>extra-medium</li>
       <li>ll</li>
     </ul>
+    This is content from Gamma, which should be inserted.
+    <p>This is content from the description property in the YFM of Gamma</p>
     ,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: Compose. Options hash cwd</h2> 
@@ -126,42 +159,66 @@
       <li>extra-medium</li>
       <li>ll</li>
     </ul>
-    ,
-    <h1>My Brilliant Blog</h1> 
-    <h2>Post title: Alpha post</h2> 
-    <p>Post</p>
-    <p>Content from Compose. Options hash cwd.</p>
-    <ul class="tags">
-      <li>happy</li>
-      <li>gregarious</li>
-      <li>sad</li>
-    </ul>
-    ,
-    <h1>My Brilliant Blog</h1> 
-    <h2>Post title: Beta post</h2> 
-    <p>Post</p>
-    <p>Content from Compose. Options hash cwd.</p>
-    <ul class="tags">
-      <li>paper</li>
-      <li>rock</li>
-      <li>scissors</li>
-    </ul>
-    ,
-    <h1>My Brilliant Blog</h1> 
-    <h2>Post title: Gamma post</h2> 
-    <p>Post</p>
-    <p>Content from Compose. Options hash cwd.</p>
-    <ul class="tags">
-      <li>white</li>
-      <li>gray</li>
-      <li>black</li>
-    </ul>
+
+    <!-- post -->
+    <article class="post">
+      <h1>My Brilliant Blog</h1> 
+      <h2>Post title: Alpha post</h2> 
+
+      <!-- Content -->
+      <p>Post</p>
+
+      <!-- Tags -->
+      <ul class="tags">
+        <li>happy</li>
+        <li>gregarious</li>
+        <li>sad</li>
+      </ul>
+    </article>
+    This is the Alpha post, which should be inserted in the composed result. ,
+    <article class="post">
+      <h1>My Brilliant Blog</h1> 
+      <h2>Post title: Beta post</h2> 
+
+      <!-- Content -->
+      <p>Post</p>
+
+      <!-- Tags -->
+      <ul class="tags">
+        <li>paper</li>
+        <li>rock</li>
+        <li>scissors</li>
+      </ul>
+    </article>
+    This is the Beta post, which should be inserted in the composed result. ,
+    <article class="post">
+      <h1>My Brilliant Blog</h1> 
+      <h2>Post title: Gamma post</h2> 
+
+      <!-- Content -->
+      <p>Post</p>
+
+      <!-- Tags -->
+      <ul class="tags">
+        <li>white</li>
+        <li>gray</li>
+        <li>black</li>
+      </ul>
+    </article>
+    This is the Gamma post, which should be inserted in the composed result.
+    <p>This is content from the description property in the YFM of Gamma post</p>
     ,
     <h1>My Brilliant Blog</h1> 
     <h2>Post title: Shapes</h2> 
     <p>Post</p>
     <p>Content from Compose. Options hash cwd.</p>
     <ul class="tags">
+      <li>up</li>
+      <li>down</li>
+      <li>middle</li>
+    </ul>
+    <ul class="Shapes">
+      Content from Shapes.
       <li>up</li>
       <li>down</li>
       <li>middle</li>
