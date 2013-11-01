@@ -5,6 +5,14 @@
     <title>Custom Sep Hash</title>
   </head>
   <body>
+    <ul class="pager ">
+      <li class="previous">
+        <a href="test/actual/custom_separator_hash/custom_sep_hash.html">&larr; Previous</a> 
+      </li>
+      <li class="next disabled">
+        <a href="test/actual/custom_separator_hash/custom_sep_hash.html">Next &rarr;</a> 
+      </li>
+    </ul>
 
     <!-- sep -->
     <a class="anchor" href="#alpha"></a> 
@@ -17,6 +25,7 @@
       <li class="link">medium</li>
       <li class="link">large</li>
     </ul>
+    This is content from Alpha, which should be inserted.
 
     <!-- sep -->
     <a class="anchor" href="#beta"></a> 
@@ -29,6 +38,7 @@
       <li class="link">circle</li>
       <li class="link">triangle</li>
     </ul>
+    This is content from Beta, which should be inserted.
 
     <!-- sep -->
     <a class="anchor" href="#before-another-chapter-2"></a> 
@@ -41,6 +51,9 @@
       <li class="link">e</li>
       <li class="link">c</li>
     </ul>
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 2</p>
+    <p class="chapter">Chapter: 2</p>
 
     <!-- sep -->
     <a class="anchor" href="#chapter-1"></a> 
@@ -53,6 +66,9 @@
       <li class="link">lmn</li>
       <li class="link">opq</li>
     </ul>
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 1</p>
+    <p class="chapter">Chapter: 1</p>
 
     <!-- sep -->
     <a class="anchor" href="#chapter-2"></a> 
@@ -65,6 +81,9 @@
       <li class="link">abc</li>
       <li class="link">def</li>
     </ul>
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 2</p>
+    <p class="chapter">Chapter: 2</p>
 
     <!-- sep -->
     <a class="anchor" href="#chapter-3"></a> 
@@ -77,6 +96,9 @@
       <li class="link">lmn</li>
       <li class="link">opq</li>
     </ul>
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 3</p>
+    <p class="chapter">Chapter: 3</p>
 
     <!-- sep -->
     <a class="anchor" href="#middle-file-chapter-3"></a> 
@@ -89,6 +111,9 @@
       <li class="link">e</li>
       <li class="link">f</li>
     </ul>
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 3</p>
+    <p class="chapter">Chapter: 3</p>
 
     <!-- sep -->
     <a class="anchor" href="#something-random-chapter-1"></a> 
@@ -101,6 +126,9 @@
       <li class="link">b</li>
       <li class="link">c</li>
     </ul>
+    <h1>Content from My Amazing Book</h1> 
+    <p class="intro">Chapter 1</p>
+    <p class="chapter">Chapter: 1</p>
 
     <!-- sep -->
     <a class="anchor" href="#colors"></a> 
@@ -112,6 +140,12 @@
       <li class="link">blue</li>
       <li class="link">green</li>
       <li class="link">red</li>
+    </ul>
+    <ul class="Colors">
+      Content from Colors.
+      <li>blue</li>
+      <li>green</li>
+      <li>red</li>
     </ul>
 
     <!-- sep -->
@@ -125,6 +159,12 @@
       <li class="link">banana</li>
       <li class="link">orange</li>
     </ul>
+    <ul class="Fruit">
+      Content from Fruit.
+      <li>apple</li>
+      <li>banana</li>
+      <li>orange</li>
+    </ul>
 
     <!-- sep -->
     <a class="anchor" href="#gamma"></a> 
@@ -137,6 +177,8 @@
       <li class="link">extra-medium</li>
       <li class="link">ll</li>
     </ul>
+    This is content from Gamma, which should be inserted.
+    <p>This is content from the description property in the YFM of Gamma</p>
 
     <!-- sep -->
     <a class="anchor" href="#opts_hash_cwd"></a> 
@@ -150,41 +192,53 @@
       <li class="link">ll</li>
     </ul>
 
-    <!-- sep -->
-    <a class="anchor" href="#post-1"></a> 
-    <h1 class="title">My Brilliant Blog</h1> 
-    <h2 class="subtitle">Post title: Alpha post</h2> 
-    <p class="content">Post</p>
-    <p class="origin">Content from Compose. Options hash cwd.</p>
-    <ul class="tags">
-      <li class="link">happy</li>
-      <li class="link">gregarious</li>
-      <li class="link">sad</li>
-    </ul>
+    <!-- post -->
+    <article class="post">
+      <h1>My Brilliant Blog</h1> 
+      <h2>Post title: Alpha post</h2> 
 
-    <!-- sep -->
-    <a class="anchor" href="#post-2"></a> 
-    <h1 class="title">My Brilliant Blog</h1> 
-    <h2 class="subtitle">Post title: Beta post</h2> 
-    <p class="content">Post</p>
-    <p class="origin">Content from Compose. Options hash cwd.</p>
-    <ul class="tags">
-      <li class="link">paper</li>
-      <li class="link">rock</li>
-      <li class="link">scissors</li>
-    </ul>
+      <!-- Content -->
+      <p>Post</p>
 
-    <!-- sep -->
-    <a class="anchor" href="#post-3"></a> 
-    <h1 class="title">My Brilliant Blog</h1> 
-    <h2 class="subtitle">Post title: Gamma post</h2> 
-    <p class="content">Post</p>
-    <p class="origin">Content from Compose. Options hash cwd.</p>
-    <ul class="tags">
-      <li class="link">white</li>
-      <li class="link">gray</li>
-      <li class="link">black</li>
-    </ul>
+      <!-- Tags -->
+      <ul class="tags">
+        <li>happy</li>
+        <li>gregarious</li>
+        <li>sad</li>
+      </ul>
+    </article>
+    This is the Alpha post, which should be inserted in the composed result. ,
+    <article class="post">
+      <h1>My Brilliant Blog</h1> 
+      <h2>Post title: Beta post</h2> 
+
+      <!-- Content -->
+      <p>Post</p>
+
+      <!-- Tags -->
+      <ul class="tags">
+        <li>paper</li>
+        <li>rock</li>
+        <li>scissors</li>
+      </ul>
+    </article>
+    This is the Beta post, which should be inserted in the composed result. ,
+    <article class="post">
+      <h1>My Brilliant Blog</h1> 
+      <h2>Post title: Gamma post</h2> 
+
+      <!-- Content -->
+      <p>Post</p>
+
+      <!-- Tags -->
+      <ul class="tags">
+        <li>white</li>
+        <li>gray</li>
+        <li>black</li>
+      </ul>
+    </article>
+    This is the Gamma post, which should be inserted in the composed result.
+    <p>This is content from the description property in the YFM of Gamma post</p>
 
     <!-- sep -->
     <a class="anchor" href="#shapes"></a> 
@@ -196,6 +250,12 @@
       <li class="link">up</li>
       <li class="link">down</li>
       <li class="link">middle</li>
+    </ul>
+    <ul class="Shapes">
+      Content from Shapes.
+      <li>up</li>
+      <li>down</li>
+      <li>middle</li>
     </ul>
   </body>
 </html>
