@@ -143,8 +143,9 @@ module.exports = function(grunt) {
   // Load npm plugins to provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-sync-pkg');
   grunt.loadNpmTasks('assemble');
 
   // Default to tasks to run with the "grunt" command.
-  grunt.registerTask('default', ['clean', 'jshint', 'assemble']);
+  grunt.registerTask('default', ['clean', 'jshint', 'assemble', 'sync']);
 };
