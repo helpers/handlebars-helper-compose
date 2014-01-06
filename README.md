@@ -90,7 +90,7 @@ assemble: {
     compose: {
       cwd: 'test/fixtures/includes',
       sep: '<!-- include -->',
-      compare_fn: function(a, b) {
+      compare: function(a, b) {
         return a.index >= b.index ? 1 : -1;
       }
     }
