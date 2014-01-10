@@ -54,14 +54,14 @@ module.exports.register = function(Handlebars, options, params) {
         number: index + 1,
         file: file,
         id: path.basename(file, path.extname(file)),
-        context: processContext(grunt, _.defaults({content: content}, context)),
-        content: content
+        context: processContext(grunt, _.defaults({substance: content}, context)),
+        substance: content
       };
     }).sort(compare_fn).map(function (obj) {
 
       // promote id into context
       obj.context.id = obj.id;
-      var template = Handlebars.compile(options.fn(obj.context) + obj.content);
+      var template = Handlebars.compile(options.fn(obj.context));
       return template(obj.context);
 
     }).join(options.sep);
