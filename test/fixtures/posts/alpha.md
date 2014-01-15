@@ -1,9 +1,10 @@
 ---
 title: Alpha
+description:
 tags:
 - small
 - medium
 - large
 ---
 
-This is content from {{title}}, which should be inserted.
+This is content from from alpha.md. Title: {{title}}.

@@ -37,7 +37,18 @@ module.exports = function(grunt) {
         layout: '<%= site.layout %>',
       },
 
-      // Should use cwd defined in task options (Gruntfile)
+      context: {
+        options: {
+          compose: {
+            cwd: '<%= site.book %>',
+            sep: '<!-- post -->',
+            origin: true
+          }
+        },
+        src: ['<%= site.pages %>/context-*.hbs'],
+        dest: '<%= site.actual %>/context/',
+      },
+
       book: {
         options: {
           compose: {

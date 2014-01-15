@@ -61,19 +61,19 @@ module.exports.register = function (Handlebars, options, params) {
         var content = yfm.extract(filepath).content || '';
         var metadata = yfm.extract(filepath).context || {};
 
-        // `context`           = the given context (second parameter)
-        // `metadata`          = YAML front matter of the partial
-        // `opts.data[name]`   = JSON/YAML data file defined in Assemble options.data
+        // 1. `context`           = the given context (second parameter)
+        // 2. `metadata`          = YAML front matter of the partial
+        // 3. `opts.data[name]`   = JSON/YAML data file defined in Assemble options.data
         //                       with a basename matching the name of the partial, e.g
         //                       {{include 'foo'}} => foo.json
-        // `this`              = Typically either YAML front matter of the "inheriting" page,
+        // 4. `this`              = Typically either YAML front matter of the "inheriting" page,
         //                       layout, block expression, or "parent" helper wrapping this helper
-        // `opts`              = Custom properties defined in Assemble options
-        // `grunt.config.data` = Data from grunt.config.data
+        // 5. `opts`              = Custom properties defined in Assemble options
+        // 6. `grunt.config.data` = Data from grunt.config.data
         //                       (e.g. pkg: grunt.file.readJSON('package.json'))
 
-        var ctx = _.extend({}, grunt.config.data, opts, this, opts.data[filepath], metadata, context);
-        ctx = grunt.config.process(ctx);
+        var ctx = _.extend(grunt.config.data, opts, this, opts.data[filepath], metadata, context);
+        ctx = processContext(grunt, ctx);
 
         if (ctx.data) {
           data = Handlebars.createFrame(ctx.data);
@@ -100,10 +100,10 @@ module.exports.register = function (Handlebars, options, params) {
         var output = options.fn(ctx, {data: data});
 
         // Prepend output with the filepath to the original partial
-        var include = opts.include || opts.data.include || {};
-        if (include.origin === true) {
+        if (options.origin && options.origin === true) {
           output = '<!-- ' + filepath + ' -->\n' + output;
         }
+
         return output;
       }).sort(options.compare || compareFn).map(function (pageObject) {
         return pageObject;
@@ -113,6 +113,14 @@ module.exports.register = function (Handlebars, options, params) {
     });
     return new Handlebars.SafeString(result);
   });
+
+  /**
+   * Process templates using grunt.config.data and context
+   */
+  var processContext = function(grunt, context) {
+    grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
+    return grunt.config.process(grunt.config.data);
+  };
 
   /**
    * Accepts two objects (a, b),
