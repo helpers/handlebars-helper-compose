@@ -33,7 +33,7 @@ module.exports.register = function (Handlebars, options, params) {
     // Default options
     options = _.extend({
       glob: {},
-      sep: '<!-- post -->',
+      sep: '\n',
     }, options, opts.compose, options.hash);
 
     var cwd = path.join.bind(null, options.cwd || '');
