@@ -27,7 +27,8 @@
     "cwd": "~0.1.1",
     "fs-utils": "~0.1.5",
     "globule": "~0.2.0",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "~2.3.3",
+    "time-grunt": "~0.2.8"
   },
   "devDependencies": {
     "assemble": "~0.4.34",
@@ -37,7 +38,8 @@
     "grunt-readme": "~0.4.5",
     "grunt-repos": "~0.1.2",
     "grunt-sync-pkg": "~0.1.2",
-    "handlebars-helper-prettify": "~0.2.1"
+    "handlebars-helper-prettify": "~0.2.1",
+    "assemble-contrib-permalinks": "~0.3.2"
   },
   "keywords": [
     "convenience methods",

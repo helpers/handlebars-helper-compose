@@ -1,12 +1,13 @@
 ---
 title: <%= book.title %>
-chapter: 1
+chapter: 3
 intro: Chapter <%= chapter %>
 
+custom: 1
 tags:
-- hij
-- lmn
-- opq
+- d
+- e
+- f
 ---
 <h1>Content from {{title}}</h1>
 <p class="intro">{{intro}}</p>

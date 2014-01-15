@@ -1,0 +1,10 @@
+---
+title: Book B
+description: this is a description from "b/book.hbs"
+---
+<h1>{{{title}}}</h1>
+<p class="lead">{{{description}}}</p>
+
+{{#compose cwd="<%= dir %>" src="posts/*.md"}}
+  <p class="content">{{{@content}}}</p>
+{{/compose}}

@@ -1,0 +1,14 @@
+---
+title: Title from PAGE toc-sorting.hbs
+---
+<h1>{{{title}}}</h1>
+
+<!-- post -->
+{{#compose src="*.md"}}
+  <h2>Variables from the <code>data</code> context.</h2>
+  <span class="filename">filename: {{@basename}}</span>
+  <span class="intro">intro: {{@intro}}</span>
+  <span class="chapter">chapter: {{@chapter}}</span>
+  <span class="index">index: {{@index}}</span>
+  <span class="custom">custom: {{@custom}}</span>
+{{/compose}}
