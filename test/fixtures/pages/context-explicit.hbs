@@ -1,0 +1,40 @@
+---
+title: Custom sep hash
+description: Custom separator defined in the options hash.
+sep: "<!-- sep -->"
+---
+
+Here we are passing any explicit context, `blog`, to the helper.
+
+{{{sep}}}
+{{#compose blog src="**/*.md" sep=sep}}
+  <a class="anchor" href="#{{@id}}"></a>
+  <h2 class="blog-title">{{blog.title}}</h2>
+  <h3 class="post-title" id="{{@slug}}">Post title: {{title}}</h3>
+  <p class="post-content">{{{@content}}}</p>
+
+  <div class="root-context">
+    <span class="filename">filename: {{../filename}}</span>
+    <span class="pagename">pagename: {{../pagename}}</span>
+    <span class="basename">basename: {{../basename}}</span>
+    <span class="ext">ext: {{../ext}}</span>
+  </div>
+
+  <div class="data-object">
+    <span class="id">id: {{@id}}</span>
+    <span class="filepath">filepath: {{@filepath}}</span>
+    <span class="index">index: {{@index}}</span>
+    <span class="number">number: {{@number}}</span>
+    <span class="first">first: {{@first}}</span>
+    <span class="prev">prev: {{@prev}}</span>
+    <span class="next">next: {{@next}}</span>
+    <span class="last">last: {{@last}}</span>
+  </div>
+
+  <p class="origin">Content from {{@filepath}}.</p>
+  <ul class="tags">
+  {{#tags}}
+    <li class="link">{{.}}</li>
+  {{/tags}}
+  </ul>
+{{/compose}}
