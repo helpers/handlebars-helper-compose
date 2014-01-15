@@ -5,12 +5,17 @@ description: Should process markdown
 <h1>{{{title}}}</h1>
 
 <!-- post -->
-{{#compose 'book/*.hbs'}}
-  <h1>{{book.title}}</h1>
-  <h2>Post title: {{title}}</h2>
+{{#compose src="book/*.md"}}
+  <a class="anchor" href="#{{@id}}"></a>
+  <h2 class="blog-title">{{blog.title}}</h2>
+  <h3 class="post-title" id="{{@slug}}">Post title: {{title}}</h3>
+  <p class="post-content">{{{@content}}}</p>
+
+  <p class="content">
   {{#markdown}}
-    {{{content}}}
+    {{{@content}}}
   {{/markdown}}
+  </p>
   <ul class="tags">
   {{#tags}}
     <li>{{.}}</li>

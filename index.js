@@ -1,83 +1,118 @@
 /**
- * {{compose}}
+ * Handlebars Helper: {{compose}}
+ * https://github.com/helpers/handlebars-helper-compose
  *
- * https://github.com/helpers/compose
- * Copyright (c) 2013 Jon Schlinkert, contributors.
+ * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * https://github.com/jonschlinkert
  * Licensed under the MIT license.
  */
 
-
-'use strict';
-
 // Node.js modules
-var path  = require('path');
+var path = require('path');
 
 // node_modules
-var yfm   = require('assemble-yaml');
-var _     = require('lodash');
+var file = require('fs-utils');
+var glob = require('globule');
+var yfm = require('assemble-yaml');
+var _str = require('underscore.string');
+var _ = require('lodash');
 
 
-module.exports.register = function(Handlebars, options, params) {
+module.exports.register = function (Handlebars, options, params) {
 
-  // If the 'assemble.options' object exists, use it
-  var opts     = options || {};
-  var grunt    = params.grunt;
-  var assemble = params.assemble;
+  'use strict';
 
+  var grunt = params.grunt;
+  var opts = options || {};
+  opts.compose = opts.compose || {};
 
-  Handlebars.registerHelper("compose", function(src, options, compare_fn) {
-    var hash = options.hash || {};
+  Handlebars.registerHelper('compose', function(context, options) {
+    options = _.extend({}, context, options);
+    options.hash = options.hash || {};
 
     // Default options
     options = _.extend({
-      cwd: '',
-      sep: '',
-      glob: {}
-    }, options, opts.data, opts.compose, hash);
+      glob: {},
+      sep: '<!-- post -->',
+    }, options, opts.compose, options.hash);
 
-    // Join path to 'cwd' if defined in the helper's options
-    var cwd = path.join.bind(null, options.cwd);
-    grunt.verbose.ok("cwd:".yellow, cwd(src));
+    var cwd = path.join.bind(null, options.cwd || '');
+    var i = 0;
+    var result = '';
+    var data;
 
-    // Compare function, for sorting.
-    compare_fn = (compare_fn || options.compare || compareFn);
-    var index = 0;
+    if (_.isFunction(options)) {
+      options = options.call(this);
+    }
 
-    var content;
-    var html = grunt.file.expand(options.glob, cwd(src)).map(function (file) {
-      var context = yfm.extract(file).context;
-      var content = yfm.extract(file).content;
+    var patterns = options.src;
+    if(!Array.isArray(patterns)) {
+       patterns = [patterns];
+    }
 
-      index += 1;
-      return {
-        index: index,
-        number: index + 1,
-        file: file,
-        id: path.basename(file, path.extname(file)),
-        context: processContext(grunt, _.defaults({content: content}, context)),
-        content: content
-      };
-    }).sort(compare_fn).map(function (obj) {
+    patterns.forEach(function (pattern) {
+      var files = glob.find(cwd(pattern), options.glob);
+      var src = files.map(function (filepath) {
+        // console.log('>> Inserting:', filepath);
 
-      // promote id into context
-      obj.context.id = obj.id;
-      var template = Handlebars.compile(options.fn(obj.context) + obj.content);
-      return template(obj.context);
+        i += 1;
 
-    }).join(options.sep);
+        // Process context, using YAML front-matter, grunt config and Assemble options.data
+        var content = yfm.extract(filepath).content || '';
+        var metadata = yfm.extract(filepath).context || {};
 
-    return new Handlebars.SafeString(html);
+        // `context`           = the given context (second parameter)
+        // `metadata`          = YAML front matter of the partial
+        // `opts.data[name]`   = JSON/YAML data file defined in Assemble options.data
+        //                       with a basename matching the name of the partial, e.g
+        //                       {{include 'foo'}} => foo.json
+        // `this`              = Typically either YAML front matter of the "inheriting" page,
+        //                       layout, block expression, or "parent" helper wrapping this helper
+        // `opts`              = Custom properties defined in Assemble options
+        // `grunt.config.data` = Data from grunt.config.data
+        //                       (e.g. pkg: grunt.file.readJSON('package.json'))
+
+        var ctx = _.extend({}, grunt.config.data, opts, this, opts.data[filepath], metadata, context);
+        ctx = grunt.config.process(ctx);
+
+        if (ctx.data) {
+          data = Handlebars.createFrame(ctx.data);
+        }
+
+        data.title    = ctx.title;
+        data.filepath = filepath;
+        data.basename = file.basename(filepath);
+        data.filename = file.filename(filepath);
+        data.pagename = file.filename(filepath);
+        data.slug     = _str.slugify(data.basename);
+        data.id       = data.slug;
+
+        data.index  = i;
+        data.number = i + 1;
+        data.first  = (i === 0);
+        data.prev   = i - 1;
+        data.next   = i + 1;
+        data.last   = (i === (files.length - 1));
+
+        var glob_fn = Handlebars.compile(content);
+        data.content = glob_fn(ctx).replace(/^\s+/, '');
+
+        var output = options.fn(ctx, {data: data});
+
+        // Prepend output with the filepath to the original partial
+        var include = opts.include || opts.data.include || {};
+        if (include.origin === true) {
+          output = '<!-- ' + filepath + ' -->\n' + output;
+        }
+        return output;
+      }).sort(options.compare || compareFn).map(function (pageObject) {
+        return pageObject;
+      }).join(options.sep);
+
+      result += src;
+    });
+    return new Handlebars.SafeString(result);
   });
-
-
-  /**
-   * Process templates using grunt config data and context
-   */
-  var processContext = function(grunt, context) {
-    grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
-    return grunt.config.process(grunt.config.data);
-  };
-
 
   /**
    * Accepts two objects (a, b),

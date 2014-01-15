@@ -3,13 +3,30 @@ title: Custom sep options
 description: Custom separator defined in the options hash.
 ---
 <!-- post -->
-{{#compose '**/*.hbs'}}
-  <a href="#{{id}}"></a>
-  <h1>{{blog.title}}</h1>
-  <h2>Post title: {{title}}</h2>
-  <p>Post {{{content}}}</p>
+{{#compose src="**/*.md"}}
+  <a class="anchor" href="#{{@id}}"></a>
+  <h2 class="blog-title">{{blog.title}}</h2>
+  <h3 class="post-title" id="{{@slug}}">Post title: {{title}}</h3>
+  <p class="post-content">{{{@content}}}</p>
 
-  <p>Content from {{name}}.</p>
+  <div class="root-context">
+    <span class="filename">filename: {{../filename}}</span>
+    <span class="pagename">pagename: {{../pagename}}</span>
+    <span class="basename">basename: {{../basename}}</span>
+    <span class="ext">ext: {{../ext}}</span>
+  </div>
+
+  <div class="data-object">
+    <span class="id">id: {{@id}}</span>
+    <span class="filepath">filepath: {{@filepath}}</span>
+    <span class="index">index: {{@index}}</span>
+    <span class="number">number: {{@number}}</span>
+    <span class="first">first: {{@first}}</span>
+    <span class="prev">prev: {{@prev}}</span>
+    <span class="next">next: {{@next}}</span>
+    <span class="last">last: {{@last}}</span>
+  </div>
+
   <ul class="tags">
   {{#tags}}
     <li>{{.}}</li>

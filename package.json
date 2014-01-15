@@ -1,6 +1,6 @@
 {
   "name": "handlebars-helper-compose",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "{{compose}} handlebars helper. Inlines content from multiple files optionally using wildcard (globbing/minimatch) patterns, extracts YAML front matter to pass to context for each file. Accepts compare function as 3rd parameter for sorting inlined files. Good for blog posts, chapters, etc.",
   "homepage": "https://github.com/helpers/handlebars-helper-compose",
   "author": {
@@ -22,21 +22,28 @@
   ],
   "main": "./index.js",
   "dependencies": {
-    "assemble-yaml": "~0.1.5",
-    "lodash": "~2.1.0"
+    "assemble-yaml": "~0.1.8",
+    "lodash": "~2.4.0",
+    "cwd": "~0.1.1",
+    "fs-utils": "~0.1.5",
+    "globule": "~0.2.0",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
-    "assemble": "~0.4.13",
-    "grunt": "~0.4.1",
+    "assemble": "~0.4.34",
+    "grunt": "~0.4.2",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-readme": "~0.1.8",
-    "helper-prettify": "~0.1.7"
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-readme": "~0.4.5",
+    "grunt-repos": "~0.1.2",
+    "grunt-sync-pkg": "~0.1.2",
+    "handlebars-helper-prettify": "~0.2.1"
   },
   "keywords": [
     "convenience methods",
     "filter",
     "handlebars helper",
+    "handlebars-helper-prettify",
     "helper",
     "partial",
     "include",
