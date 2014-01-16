@@ -1,5 +1,4 @@
 ---
-title: Gamma
 tags:
 - ss
 - extra-medium

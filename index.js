@@ -29,21 +29,20 @@ module.exports.register = function (Handlebars, options, params) {
     options = _.extend(context, options);
     var hash = options.hash || {};
 
+
     // Default options
     options = _.extend({glob: {}, sep: '\n'}, options, opts.compose, hash);
-
-
     options.cwd = grunt.task.current.files[0].orig.cwd || options.cwd;
 
     var cwd = path.join.bind(null, options.cwd || '');
     var i = 0;
     var result = '';
     var data;
-
     var ctx = _.extend(grunt.config.data, opts, this);
 
-    // Add the `srcDirname` variable to the context
+    // Add some src variables to the context
     ctx.dir = path.dirname(ctx.page.src || '');
+    ctx.base = file.basename(ctx.page.src);
 
     var patterns = grunt.config.process(options.src);
     if(!Array.isArray(patterns)) {
@@ -97,7 +96,8 @@ module.exports.register = function (Handlebars, options, params) {
          * 6. `grunt.config.data`: Data from grunt.config.data
          *                         (e.g. pkg: grunt.file.readJSON('package.json'))
          */
-        ctx = _.extend(ctx, opts.data[filepath], metadata, context);
+        var basename = file.basename(filepath);
+        ctx = _.extend(ctx, opts.data[ctx.base], opts.data[basename], metadata, context);
 
         // Process config (Lo-Dash) templates
         ctx = processContext(grunt, ctx);
@@ -112,7 +112,7 @@ module.exports.register = function (Handlebars, options, params) {
 
         // Best guess at some useful properties to add to the data context
         data.filepath  = filepath;
-        data.basename  = file.basename(filepath);
+        data.basename  = basename;
         data.filename  = file.filename(filepath);
         data.pagename  = file.filename(filepath);
         data.slug      = data.slug || _str.slugify(data.basename);
