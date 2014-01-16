@@ -3,11 +3,10 @@
 # =============================================
 
 root:             _gh_pages
-dest:             <%= config.root %>
+dest:             test/actual
 assets:           <%= config.dest %>/assets
 
 # Tests
-actual:           test/actual
 
 # Data
 data:             test/fixtures/data/*.{json,yml}

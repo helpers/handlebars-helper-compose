@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       },
 
       // No options defined
-      templates: {
+      dynamic: {
         options: {
           flatten: false,
           compose: {
@@ -49,9 +49,13 @@ module.exports = function(grunt) {
             process: true
           }
         },
-        files: [
-          {expand: true, cwd: 'test/fixtures/dynamic', src: ['**/*.hbs'], dest: '<%= config.actual %>/dynamic/', ext: '.html'}
-        ]
+        files: [{
+          expand: true,
+          cwd: '<%= config.templates %>/dynamic',
+          src: ['**/*.{hbs,md}'],
+          dest: '<%= config.dest %>/dynamic/',
+          ext: '.html'
+        }]
       },
 
       context: {
@@ -65,7 +69,7 @@ module.exports = function(grunt) {
           }
         },
         src: ['<%= config.pages %>/context-*.hbs'],
-        dest: '<%= config.actual %>/context/',
+        dest: '<%= config.dest %>/context/',
       },
 
       book: {
@@ -78,7 +82,7 @@ module.exports = function(grunt) {
           }
         },
         src: ['<%= config.pages %>/{book,toc}.hbs'],
-        dest: '<%= config.actual %>/book/',
+        dest: '<%= config.dest %>/book/',
       },
 
       // No options defined
@@ -89,7 +93,7 @@ module.exports = function(grunt) {
           }
         },
         src: ['<%= config.pages %>/full_path.hbs'],
-        dest: '<%= config.actual %>/bogus_options/',
+        dest: '<%= config.dest %>/bogus_options/',
       },
 
 
@@ -99,7 +103,7 @@ module.exports = function(grunt) {
           compose: {}
         },
         src: ['<%= config.pages %>/full_path.hbs'],
-        dest: '<%= config.actual %>/no_opts_defined/',
+        dest: '<%= config.dest %>/no_opts_defined/',
       },
 
       // Should use cwd defined in task options (Gruntfile)
@@ -112,7 +116,7 @@ module.exports = function(grunt) {
           }
         },
         src: ['<%= config.pages %>/opts_cwd.hbs'],
-        dest: '<%= config.actual %>/opts_cwd/',
+        dest: '<%= config.dest %>/opts_cwd/',
       },
 
       // Should use cwd from options hash
@@ -121,7 +125,7 @@ module.exports = function(grunt) {
           compose: {process: true}
         },
         src: ['<%= config.posts %>/opts_hash_cwd.hbs'],
-        dest: '<%= config.actual %>/opts_hash_cwd/'
+        dest: '<%= config.dest %>/opts_hash_cwd/'
       },
 
       // Should use a custom separator between sections
@@ -133,7 +137,7 @@ module.exports = function(grunt) {
           }
         },
         src: ['<%= config.pages %>/custom_sep_opts.hbs'],
-        dest: '<%= config.actual %>/custom_separator_opts/',
+        dest: '<%= config.dest %>/custom_separator_opts/',
       },
 
       // Should use a custom separator between sections
@@ -144,13 +148,13 @@ module.exports = function(grunt) {
           }
         },
         src: ['<%= config.pages %>/custom_sep_hash.hbs'],
-        dest: '<%= config.actual %>/custom_separator_hash/',
+        dest: '<%= config.dest %>/custom_separator_hash/',
       },
 
       // Basic compare function
       compare_fn_index: {
         src: ['<%= config.pages %>/toc-sorting.hbs'],
-        dest: '<%= config.actual %>/compare_fn_index/',
+        dest: '<%= config.dest %>/compare_fn_index/',
         options: {
           compose: {
             cwd: '<%= config.book %>',
@@ -165,7 +169,7 @@ module.exports = function(grunt) {
       // Basic compare function
       compare_fn_custom_prop: {
         src: ['<%= config.pages %>/toc-sorting.hbs'],
-        dest: '<%= config.actual %>/compare_fn_custom_prop/',
+        dest: '<%= config.dest %>/compare_fn_custom_prop/',
         options: {
           compose: {
             cwd: '<%= config.book %>',
@@ -180,7 +184,7 @@ module.exports = function(grunt) {
       // Alternative compare function
       compare_fn_chapter: {
         src: ['<%= config.pages %>/toc-sorting.hbs'],
-        dest: '<%= config.actual %>/compare_fn_chapter/',
+        dest: '<%= config.dest %>/compare_fn_chapter/',
         options: {
           compose: {
             cwd: '<%= config.book %>',
@@ -197,7 +201,7 @@ module.exports = function(grunt) {
     // Before generating any new files,
     // remove files from previous build.
     clean: {
-      example: ['<%= config.actual %>/**']
+      example: ['<%= config.dest %>/**']
     }
   });
 
