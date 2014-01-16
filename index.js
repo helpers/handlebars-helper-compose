@@ -31,6 +31,8 @@ module.exports.register = function (Handlebars, options, params) {
 
     // Default options
     options = _.extend({glob: {}, sep: '\n'}, options, opts.compose, hash);
+
+
     options.cwd = grunt.task.current.files[0].orig.cwd || options.cwd;
 
     var cwd = path.join.bind(null, options.cwd || '');
@@ -52,6 +54,26 @@ module.exports.register = function (Handlebars, options, params) {
     if(options.hash.cwd) {
       cwd = path.join.bind(null, grunt.config.process(options.hash.cwd));
     }
+
+    /**
+     * Accepts two objects (a, b),
+     * @param  {Object} a
+     * @param  {Object} b
+     * @return {Number} returns 1 if (a >= b), otherwise -1
+     */
+    var compareFn = function (a, b) {
+      var opts = _.extend({sortOrder: 'asc', sortBy: 'index'}, options);
+
+      a = a.data[opts.sortBy];
+      b = b.data[opts.sortBy];
+
+      var result = 0;
+      result = a > b ? 1 : a < b ? -1 : 0;
+      if(opts.sortOrder.toLowerCase() === 'desc') {
+        return result * -1;
+      }
+      return result;
+    };
 
     patterns.forEach(function (pattern) {
       var files = glob.find(cwd(pattern), options.glob);
@@ -86,16 +108,16 @@ module.exports.register = function (Handlebars, options, params) {
         // are only available in the block helper's child template and
         // not in the original context
         data = Handlebars.createFrame(ctx.data);
-        data = _.extend(data, _.omit(metadata, ['assemble', 'pages', 'plugins', '_plugins']));
+        data = _.extend(data, opts.compose, _.omit(metadata, ['assemble', 'pages', 'plugins', '_plugins']));
 
         // Best guess at some useful properties to add to the data context
-        data.filepath = filepath;
-        data.basename = file.basename(filepath);
-        data.filename = file.filename(filepath);
-        data.pagename = file.filename(filepath);
-        data.slug     = data.slug || _str.slugify(data.basename);
-        data.id       = data.slug;
-        data.title    = data.title || ctx.title || _str.titleize(data.basename);
+        data.filepath  = filepath;
+        data.basename  = file.basename(filepath);
+        data.filename  = file.filename(filepath);
+        data.pagename  = file.filename(filepath);
+        data.slug      = data.slug || _str.slugify(data.basename);
+        data.id        = data.slug;
+        data.title     = data.title || ctx.title || _str.titleize(data.basename);
 
         // Some of these might come in handy for ordering/sorting
         // or identifying posts, chapters, etc.
@@ -122,7 +144,6 @@ module.exports.register = function (Handlebars, options, params) {
           data: data,
           content: output
         };
-
       }).sort(options.compare || compareFn).map(function (obj) {
         if(options.debug) {file.writeDataSync(options.debug, obj);}
 
@@ -135,6 +156,11 @@ module.exports.register = function (Handlebars, options, params) {
     return new Handlebars.SafeString(result);
   });
 
+  var sortFn = function(a, b) {
+    var result = 0;
+    return a > b ? 1 : a < b ? -1 : 0;
+  };
+
   /**
    * Process templates using grunt.config.data and context
    */
@@ -142,15 +168,4 @@ module.exports.register = function (Handlebars, options, params) {
     grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
     return grunt.config.process(grunt.config.data);
   };
-
-  /**
-   * Accepts two objects (a, b),
-   * @param  {Object} a
-   * @param  {Object} b
-   * @return {Number} returns 1 if (a >= b), otherwise -1
-   */
-  var compareFn = function(a, b) {
-    return a.index >= b.index ? 1 : -1;
-  };
 };
-

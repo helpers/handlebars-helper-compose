@@ -44,6 +44,8 @@ module.exports = function(grunt) {
         options: {
           flatten: false,
           compose: {
+            sortBy: 'title',
+            sortOrder: 'desc',
             process: true
           }
         },
@@ -55,6 +57,8 @@ module.exports = function(grunt) {
       context: {
         options: {
           compose: {
+            sortBy: 'title',
+            sortOrder: 'desc',
             cwd: '<%= config.book %>',
             sep: '<!-- chapter -->',
             origin: true
@@ -67,6 +71,8 @@ module.exports = function(grunt) {
       book: {
         options: {
           compose: {
+            sortBy: 'number',
+            sortOrder: 'desc',
             cwd: '<%= config.book %>',
             sep: '<!-- chapter -->'
           }
@@ -100,6 +106,7 @@ module.exports = function(grunt) {
       opts_cwd: {
         options: {
           compose: {
+            sortBy: 'basename',
             cwd: '<%= config.posts %>',
             sep: '<!-- article -->'
           }
@@ -179,15 +186,7 @@ module.exports = function(grunt) {
             cwd: '<%= config.book %>',
             sep: '<!-- chapter -->',
             compare: function(a, b) {
-              a = a.data.chapter;
-              b = b.data.chapter;
-              if(a === b) {
-                return 0;
-              } else if (a > b) {
-                return 1;
-              } else {
-                return -1;
-              }
+              return a.data.chapter >= b.data.chapter ? 1 : -1;
             },
             debug: 'tmp/obj.json'
           }
