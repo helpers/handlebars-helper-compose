@@ -6,9 +6,14 @@ description: this is a description from "toc.md"
 
 <!-- post -->
 {{#compose src="*.md"}}
-  <h2 id="{{@slug}}">{{book.title}}</h2>
-  <h3>Post title: {{title}}</h3>
-  <p class="content">{{{@content}}}</p>
+  <p class="title">{{{title}}}</p>
+  <p class="description">{{{description}}}</p>
+
+  <a class="anchor" href="#{{@id}}"></a>
+  <h2 class="blog-title">{{blog.title}}</h2>
+  <h3 class="post-title" id="{{@title}}">{{@title}}</h3>
+  <h3 class="post-slug" id="{{@slug}}">{{@slug}}</h3>
+  <p class="post-content">{{{@content}}}</p>
 
   <div class="root-context">
     <span class="filename">filename: {{@filename}}</span>

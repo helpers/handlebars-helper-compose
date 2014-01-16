@@ -5,14 +5,18 @@
     <title></title>
   </head>
   <body>
-    <p>Here we are passing any explicit context, <code>blog</code>, to the helper.</p>
+    <p>Context for <code>description</code> should be from an external data file matching this page: <code>context-page-data-file.yml</code>. The <code>title</code> will come from context of the inlined files. This is because the inlined files don&#39;t have
+      a <code>description</code> field, but they do have a <code>title</code> field.</p>
     <!-- sep -->
 
     <!-- test/fixtures/book/before-another-chapter-2.md -->
+    <p class="title">My Amazing Book</p>
+    <p class="description">description from CONTEXT-PAGE-DATA-FILE.yml</p>
     <p>
       <a class="anchor" href="#before-another-chapter-2"></a>
       <h2 class="blog-title">My Brilliant Blog</h2>
-      <h3 class="post-title" id="before-another-chapter-2">Post title: My Amazing Book</h3>
+      <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
+      <h3 class="post-slug" id="before-another-chapter-2">before-another-chapter-2</h3>
       <p class="post-content">
         <h1>Content from My Amazing Book</h1>
       </p>
@@ -37,15 +41,23 @@
     </div>
     <p class="origin">Content from test/fixtures/book/before-another-chapter-2.md.</p>
     <ul class="tags">
+      <li class="link">a</li>
+      <li class="link">e</li>
+      <li class="link">c</li>
     </ul>
     <!-- sep -->
 
     <!-- test/fixtures/book/middle-file-chapter-3.md -->
-    <a class="anchor" href="#middle-file-chapter-3"></a>
-    <h2 class="blog-title">My Brilliant Blog</h2>
-    <h3 class="post-title" id="middle-file-chapter-3">Post title: My Amazing Book</h3>
-    <p class="post-content">
-      <h1>Content from My Amazing Book</h1>
+    <p class="title">My Amazing Book</p>
+    <p class="description">description from CONTEXT-PAGE-DATA-FILE.yml</p>
+    <p>
+      <a class="anchor" href="#middle-file-chapter-3"></a>
+      <h2 class="blog-title">My Brilliant Blog</h2>
+      <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
+      <h3 class="post-slug" id="middle-file-chapter-3">middle-file-chapter-3</h3>
+      <p class="post-content">
+        <h1>Content from My Amazing Book</h1>
+      </p>
       <p class="intro">Chapter 3</p>
       <p class="chapter">Chapter: 3</p>
     </p>
@@ -67,15 +79,23 @@
     </div>
     <p class="origin">Content from test/fixtures/book/middle-file-chapter-3.md.</p>
     <ul class="tags">
+      <li class="link">d</li>
+      <li class="link">e</li>
+      <li class="link">f</li>
     </ul>
     <!-- sep -->
 
     <!-- test/fixtures/book/something-random-chapter-1.md -->
-    <a class="anchor" href="#something-random-chapter-1"></a>
-    <h2 class="blog-title">My Brilliant Blog</h2>
-    <h3 class="post-title" id="something-random-chapter-1">Post title: My Amazing Book</h3>
-    <p class="post-content">
-      <h1>Content from My Amazing Book</h1>
+    <p class="title">My Amazing Book</p>
+    <p class="description">description from CONTEXT-PAGE-DATA-FILE.yml</p>
+    <p>
+      <a class="anchor" href="#something-random-chapter-1"></a>
+      <h2 class="blog-title">My Brilliant Blog</h2>
+      <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
+      <h3 class="post-slug" id="something-random-chapter-1">something-random-chapter-1</h3>
+      <p class="post-content">
+        <h1>Content from My Amazing Book</h1>
+      </p>
       <p class="intro">Chapter 1</p>
       <p class="chapter">Chapter: 1</p>
     </p>
@@ -99,6 +119,9 @@
       <p class="origin">Content from test/fixtures/book/something-random-chapter-1.md.</p>
       <ul class="tags">
     </p>
+    <pre><code>&lt;li class=&quot;link&quot;&gt;a&lt;/li&gt;
+&lt;li class=&quot;link&quot;&gt;b&lt;/li&gt;
+&lt;li class=&quot;link&quot;&gt;c&lt;/li&gt;</code></pre>
     <p>
       </ul>
     </p>
