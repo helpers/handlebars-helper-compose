@@ -74,6 +74,11 @@ module.exports.register = function (Handlebars, options, params) {
 
     patterns.forEach(function (pattern) {
       var files = glob.find(cwd(pattern), options.glob);
+
+      if(options.filter) {
+        files = options.filter(files);
+      }
+
       var src = files.map(function (filepath) {
 
         i += 1;

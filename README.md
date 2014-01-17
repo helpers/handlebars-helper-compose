@@ -76,6 +76,13 @@ Default value: `\n`
 
 The separator to append after each inlined file.
 
+### filter
+Type: `function`
+
+Default value: `undefined`
+
+A custom function for filtering the array of paths returned from the `src` property. This could potentially be more flexible, please make a feature request if you have a use case.
+
 ### compare
 Type: `Function`
 
@@ -132,6 +139,26 @@ assemble: {
   }
 }
 ```
+
+### filtering
+
+Example: return only the last two items from the `src` files array:
+
+```js
+assemble: {
+  options: {
+    compose: {
+      cwd: 'posts',
+      sep: '<!-- post -->',
+      filter: function(arr) {
+        return arr.slice(Math.max(arr.length - 2, 0));
+      }
+    }
+  }
+}
+```
+
+
 
 ### cwd option
 

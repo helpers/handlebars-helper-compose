@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         flatten: true,
         config: '<%= config %>',
         data: ['<%= config.data %>'],
-        helpers: ['./index.js'],
+        helpers: ['./index.js', 'test/helpers/*.js'],
         partials: ['<%= config.includes %>'],
         layoutdir: '<%= config.layouts %>',
         layoutext: '<%= config.layoutext %>',
@@ -73,6 +73,28 @@ module.exports = function(grunt) {
         src: ['**/*.{hbs,md}'],
         dest: '<%= config.dest %>/dynamic_src_dest/',
         ext: '.html'
+      },
+
+      // No options defined
+      filter_fn: {
+        options: {
+          flatten: false,
+          compose: {
+            filter: function(arr) {
+              return arr.slice(Math.max(arr.length - 2, 0));
+            },
+            sortBy: 'title',
+            sortOrder: 'desc',
+            process: true
+          }
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= config.templates %>/dynamic',
+          src: ['**/*.{hbs,md}'],
+          dest: '<%= config.dest %>/filter_fn/',
+          ext: '.html'
+        }]
       },
 
       context: {
