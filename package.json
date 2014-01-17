@@ -22,13 +22,13 @@
   ],
   "main": "./index.js",
   "dependencies": {
-    "assemble-yaml": "~0.1.8",
     "lodash": "~2.4.0",
     "cwd": "~0.1.1",
     "fs-utils": "~0.1.5",
     "globule": "~0.2.0",
     "underscore.string": "~2.3.3",
-    "time-grunt": "~0.2.8"
+    "time-grunt": "~0.2.8",
+    "yfm": "~0.1.0"
   },
   "devDependencies": {
     "assemble": "~0.4.34",

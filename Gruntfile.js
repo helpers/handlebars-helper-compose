@@ -58,6 +58,23 @@ module.exports = function(grunt) {
         }]
       },
 
+      // No options defined
+      dynamic_src_dest_pairings: {
+        options: {
+          flatten: false,
+          compose: {
+            sortBy: 'title',
+            sortOrder: 'desc',
+            process: true
+          }
+        },
+        expand: true,
+        cwd: '<%= config.templates %>/dynamic',
+        src: ['**/*.{hbs,md}'],
+        dest: '<%= config.dest %>/dynamic_src_dest/',
+        ext: '.html'
+      },
+
       context: {
         options: {
           compose: {

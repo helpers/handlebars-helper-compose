@@ -13,7 +13,7 @@ var path = require('path');
 // node_modules
 var file = require('fs-utils');
 var glob = require('globule');
-var yfm = require('assemble-yaml');
+var yfm = require('yfm');
 var _str = require('underscore.string');
 var _ = require('lodash');
 
@@ -29,12 +29,8 @@ module.exports.register = function (Handlebars, options, params) {
     options = _.extend(context, options);
     var hash = options.hash || {};
 
-
     // Default options
     options = _.extend({glob: {}, sep: '\n'}, options, opts.compose, hash);
-    options.cwd = grunt.task.current.files[0].orig.cwd || options.cwd;
-
-    var cwd = path.join.bind(null, options.cwd || '');
     var i = 0;
     var result = '';
     var data;
@@ -49,6 +45,8 @@ module.exports.register = function (Handlebars, options, params) {
        patterns = [patterns];
     }
 
+    options.cwd = grunt.task.current.files[0].orig.cwd || options.cwd;
+    var cwd = path.join.bind(null, options.cwd || '');
     // Recalculate cwd after ctx.dir has been added to context
     if(options.hash.cwd) {
       cwd = path.join.bind(null, grunt.config.process(options.hash.cwd));
@@ -80,8 +78,8 @@ module.exports.register = function (Handlebars, options, params) {
 
         i += 1;
 
-        var content = yfm.extract(filepath).content || '';
-        var metadata = yfm.extract(filepath).context || {};
+        var content = yfm(filepath).content || '';
+        var metadata = yfm(filepath).context || {};
 
         /**
          * Process context from last to first, with #1 winning over other contexts.
@@ -164,7 +162,7 @@ module.exports.register = function (Handlebars, options, params) {
   /**
    * Process templates using grunt.config.data and context
    */
-  var processContext = function(grunt, context) {
+  var processContext = function (grunt, context) {
     grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
     return grunt.config.process(grunt.config.data);
   };
