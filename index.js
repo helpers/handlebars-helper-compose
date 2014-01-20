@@ -174,11 +174,6 @@ module.exports.register = function (Handlebars, options, params) {
     return new Handlebars.SafeString(result);
   });
 
-  var sortFn = function(a, b) {
-    var result = 0;
-    return a > b ? 1 : a < b ? -1 : 0;
-  };
-
   /**
    * Process templates using grunt.config.data and context
    */

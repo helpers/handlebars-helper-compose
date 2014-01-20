@@ -1,11 +1,7 @@
 {
   "name": "handlebars-helper-compose",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "main": [
     "./index.js"
-  ],
-  "dependencies": {
-    "assemble-yaml": "~0.1.5",
-    "lodash": "~2.1.0"
-  }
+  ]
 }

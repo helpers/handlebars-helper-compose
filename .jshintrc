@@ -10,7 +10,7 @@
   "node": true,
   "sub": true,
   "undef": false,
-  "unused": false,
+  "unused": true,
   "globals": {
     "module": true,
     "exports": true,
