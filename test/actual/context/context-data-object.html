@@ -3,150 +3,153 @@
   <head>
     <meta charset="UTF-8">
     <title>Custom sep hash</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
   </head>
   <body>
-    <p>Here we are passing any explicit context, <code>blog</code>, to the helper.</p>
-    <!-- sep -->
+    <div class="container bs-docs-container">
+      <p>Here we are passing any explicit context, <code>blog</code>, to the helper.</p>
+      <!-- sep -->
 
-    <!-- test/fixtures/book/before-another-chapter-2.md -->
-    <p class="title">My Amazing Book</p>
-    <p class="description">Custom separator defined in the options hash.</p>
-    <p>
-      <a class="anchor" href="#before-another-chapter-2"></a>
-      <h2 class="blog-title">My Brilliant Blog</h2>
-      <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
-      <h3 class="post-slug" id="before-another-chapter-2">before-another-chapter-2</h3>
-      <p class="post-content">
-        <h1>Content from My Amazing Book</h1>
+      <!-- test/fixtures/book/before-another-chapter-2.md -->
+      <p class="title">My Amazing Book</p>
+      <p class="description">Custom separator defined in the options hash.</p>
+      <p>
+        <a class="anchor" href="#before-another-chapter-2"></a>
+        <h2 class="blog-title">My Brilliant Blog</h2>
+        <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
+        <h3 class="post-slug" id="before-another-chapter-2">before-another-chapter-2</h3>
+        <p class="post-content">
+          <h1>Content from My Amazing Book</h1>
+        </p>
+        <p class="intro">Chapter 2</p>
+        <p class="chapter">Chapter: 2</p>
       </p>
-      <p class="intro">Chapter 2</p>
-      <p class="chapter">Chapter: 2</p>
-    </p>
-    <div class="root-context">
-      <span class="filename">filename: context-data-object.html</span>
-      <span class="pagename">pagename: context-data-object.html</span>
-      <span class="basename">basename: context-data-object</span>
-      <span class="ext">ext: .html</span>
-    </div>
-    <div class="data-object-yfm-properties">
-      <span class="book-title">My Amazing Book</span>
-      <span class="blog-title">My Brilliant Blog</span>
-      <span class="chapter">2</span>
-      <span class="intro">Chapter 2</span>
-      <span class="chapter">2</span>
-      <span class="intro">Chapter 2</span>
-    </div>
-    <div class="data-object">
-      <span class="id">before-another-chapter-2</span>
-      <span class="filepath">test/fixtures/book/before-another-chapter-2.md</span>
-      <span class="index">1</span>
-      <span class="number">2</span>
-      <span class="first"></span>
-      <span class="prev">0</span>
-      <span class="next">2</span>
-      <span class="last"></span>
-    </div>
-    <p class="origin">Content from test/fixtures/book/before-another-chapter-2.md.</p>
-    <ul class="tags">
-      <li class="link">a</li>
-      <li class="link">e</li>
-      <li class="link">c</li>
-    </ul>
-    <!-- sep -->
-
-    <!-- test/fixtures/book/middle-file-chapter-3.md -->
-    <p class="title">My Amazing Book</p>
-    <p class="description">Custom separator defined in the options hash.</p>
-    <p>
-      <a class="anchor" href="#middle-file-chapter-3"></a>
-      <h2 class="blog-title">My Brilliant Blog</h2>
-      <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
-      <h3 class="post-slug" id="middle-file-chapter-3">middle-file-chapter-3</h3>
-      <p class="post-content">
-        <h1>Content from My Amazing Book</h1>
-      </p>
-      <p class="intro">Chapter 3</p>
-      <p class="chapter">Chapter: 3</p>
-    </p>
-    <div class="root-context">
-      <span class="filename">filename: context-data-object.html</span>
-      <span class="pagename">pagename: context-data-object.html</span>
-      <span class="basename">basename: context-data-object</span>
-      <span class="ext">ext: .html</span>
-    </div>
-    <div class="data-object-yfm-properties">
-      <span class="book-title">My Amazing Book</span>
-      <span class="blog-title">My Brilliant Blog</span>
-      <span class="chapter">3</span>
-      <span class="intro">Chapter 3</span>
-      <span class="chapter">3</span>
-      <span class="intro">Chapter 3</span>
-    </div>
-    <div class="data-object">
-      <span class="id">middle-file-chapter-3</span>
-      <span class="filepath">test/fixtures/book/middle-file-chapter-3.md</span>
-      <span class="index">2</span>
-      <span class="number">3</span>
-      <span class="first"></span>
-      <span class="prev">1</span>
-      <span class="next">3</span>
-      <span class="last">true</span>
-    </div>
-    <p class="origin">Content from test/fixtures/book/middle-file-chapter-3.md.</p>
-    <ul class="tags">
-      <li class="link">d</li>
-      <li class="link">e</li>
-      <li class="link">f</li>
-    </ul>
-    <!-- sep -->
-
-    <!-- test/fixtures/book/something-random-chapter-1.md -->
-    <p class="title">My Amazing Book</p>
-    <p class="description">Custom separator defined in the options hash.</p>
-    <p>
-      <a class="anchor" href="#something-random-chapter-1"></a>
-      <h2 class="blog-title">My Brilliant Blog</h2>
-      <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
-      <h3 class="post-slug" id="something-random-chapter-1">something-random-chapter-1</h3>
-      <p class="post-content">
-        <h1>Content from My Amazing Book</h1>
-      </p>
-      <p class="intro">Chapter 1</p>
-      <p class="chapter">Chapter: 1</p>
-    </p>
-    <div class="root-context">
-      <span class="filename">filename: context-data-object.html</span>
-      <span class="pagename">pagename: context-data-object.html</span>
-      <span class="basename">basename: context-data-object</span>
-      <span class="ext">ext: .html</span>
-    </div>
-    <div class="data-object-yfm-properties">
-      <span class="book-title">My Amazing Book</span>
-      <span class="blog-title">My Brilliant Blog</span>
-      <span class="chapter">1</span>
-      <span class="intro">Chapter 1</span>
-      <span class="chapter">1</span>
-      <span class="intro">Chapter 1</span>
-    </div>
-    <div class="data-object">
-      <span class="id">something-random-chapter-1</span>
-      <span class="filepath">test/fixtures/book/something-random-chapter-1.md</span>
-      <span class="index">3</span>
-      <span class="number">4</span>
-      <span class="first"></span>
-      <span class="prev">2</span>
-      <span class="next">4</span>
-      <span class="last"></span>
-    </div>
-    <p>
-      <p class="origin">Content from test/fixtures/book/something-random-chapter-1.md.</p>
+      <div class="root-context">
+        <span class="filename">filename: context-data-object.html</span>
+        <span class="pagename">pagename: context-data-object.html</span>
+        <span class="basename">basename: context-data-object</span>
+        <span class="ext">ext: .html</span>
+      </div>
+      <div class="data-object-yfm-properties">
+        <span class="book-title">My Amazing Book</span>
+        <span class="blog-title">My Brilliant Blog</span>
+        <span class="chapter">2</span>
+        <span class="intro">Chapter 2</span>
+        <span class="chapter">2</span>
+        <span class="intro">Chapter 2</span>
+      </div>
+      <div class="data-object">
+        <span class="id">before-another-chapter-2</span>
+        <span class="filepath">test/fixtures/book/before-another-chapter-2.md</span>
+        <span class="index">1</span>
+        <span class="number">2</span>
+        <span class="first"></span>
+        <span class="prev">0</span>
+        <span class="next">2</span>
+        <span class="last"></span>
+      </div>
+      <p class="origin">Content from test/fixtures/book/before-another-chapter-2.md.</p>
       <ul class="tags">
-    </p>
-    <pre><code>&lt;li class=&quot;link&quot;&gt;a&lt;/li&gt;
+        <li class="link">a</li>
+        <li class="link">e</li>
+        <li class="link">c</li>
+      </ul>
+      <!-- sep -->
+
+      <!-- test/fixtures/book/middle-file-chapter-3.md -->
+      <p class="title">My Amazing Book</p>
+      <p class="description">Custom separator defined in the options hash.</p>
+      <p>
+        <a class="anchor" href="#middle-file-chapter-3"></a>
+        <h2 class="blog-title">My Brilliant Blog</h2>
+        <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
+        <h3 class="post-slug" id="middle-file-chapter-3">middle-file-chapter-3</h3>
+        <p class="post-content">
+          <h1>Content from My Amazing Book</h1>
+        </p>
+        <p class="intro">Chapter 3</p>
+        <p class="chapter">Chapter: 3</p>
+      </p>
+      <div class="root-context">
+        <span class="filename">filename: context-data-object.html</span>
+        <span class="pagename">pagename: context-data-object.html</span>
+        <span class="basename">basename: context-data-object</span>
+        <span class="ext">ext: .html</span>
+      </div>
+      <div class="data-object-yfm-properties">
+        <span class="book-title">My Amazing Book</span>
+        <span class="blog-title">My Brilliant Blog</span>
+        <span class="chapter">3</span>
+        <span class="intro">Chapter 3</span>
+        <span class="chapter">3</span>
+        <span class="intro">Chapter 3</span>
+      </div>
+      <div class="data-object">
+        <span class="id">middle-file-chapter-3</span>
+        <span class="filepath">test/fixtures/book/middle-file-chapter-3.md</span>
+        <span class="index">2</span>
+        <span class="number">3</span>
+        <span class="first"></span>
+        <span class="prev">1</span>
+        <span class="next">3</span>
+        <span class="last">true</span>
+      </div>
+      <p class="origin">Content from test/fixtures/book/middle-file-chapter-3.md.</p>
+      <ul class="tags">
+        <li class="link">d</li>
+        <li class="link">e</li>
+        <li class="link">f</li>
+      </ul>
+      <!-- sep -->
+
+      <!-- test/fixtures/book/something-random-chapter-1.md -->
+      <p class="title">My Amazing Book</p>
+      <p class="description">Custom separator defined in the options hash.</p>
+      <p>
+        <a class="anchor" href="#something-random-chapter-1"></a>
+        <h2 class="blog-title">My Brilliant Blog</h2>
+        <h3 class="post-title" id="My Amazing Book">My Amazing Book</h3>
+        <h3 class="post-slug" id="something-random-chapter-1">something-random-chapter-1</h3>
+        <p class="post-content">
+          <h1>Content from My Amazing Book</h1>
+        </p>
+        <p class="intro">Chapter 1</p>
+        <p class="chapter">Chapter: 1</p>
+      </p>
+      <div class="root-context">
+        <span class="filename">filename: context-data-object.html</span>
+        <span class="pagename">pagename: context-data-object.html</span>
+        <span class="basename">basename: context-data-object</span>
+        <span class="ext">ext: .html</span>
+      </div>
+      <div class="data-object-yfm-properties">
+        <span class="book-title">My Amazing Book</span>
+        <span class="blog-title">My Brilliant Blog</span>
+        <span class="chapter">1</span>
+        <span class="intro">Chapter 1</span>
+        <span class="chapter">1</span>
+        <span class="intro">Chapter 1</span>
+      </div>
+      <div class="data-object">
+        <span class="id">something-random-chapter-1</span>
+        <span class="filepath">test/fixtures/book/something-random-chapter-1.md</span>
+        <span class="index">3</span>
+        <span class="number">4</span>
+        <span class="first"></span>
+        <span class="prev">2</span>
+        <span class="next">4</span>
+        <span class="last"></span>
+      </div>
+      <p>
+        <p class="origin">Content from test/fixtures/book/something-random-chapter-1.md.</p>
+        <ul class="tags">
+      </p>
+      <pre><code>&lt;li class=&quot;link&quot;&gt;a&lt;/li&gt;
 &lt;li class=&quot;link&quot;&gt;b&lt;/li&gt;
 &lt;li class=&quot;link&quot;&gt;c&lt;/li&gt;</code></pre>
-    <p>
-      </ul>
-    </p>
+      <p>
+        </ul>
+      </p>
+    </div>
   </body>
 </html>

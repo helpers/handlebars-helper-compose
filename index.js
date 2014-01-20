@@ -7,25 +7,32 @@
  * Licensed under the MIT license.
  */
 
+'use strict';
+
 // Node.js modules
-var path = require('path');
+var path   = require('path');
 
 // node_modules
-var file = require('fs-utils');
-var glob = require('globule');
+var file   = require('fs-utils');
+var glob   = require('globule');
 var marked = require('marked');
-var yfm = require('yfm');
-var _str = require('underscore.string');
-var _ = require('lodash');
+var extras = require('marked-extras');
+var yfm    = require('yfm');
+var _str   = require('underscore.string');
+var _      = require('lodash');
 
 module.exports.register = function (Handlebars, options, params) {
-
-  'use strict';
 
   var grunt = params.grunt;
   var opts = options || {};
   opts.compose = opts.compose || {};
+  options.marked = options.marked || {};
 
+  extras.init(options.marked);
+  var markedOpts = _.defaults(options.marked, extras.markedDefaults);
+
+
+  // The {{compose}} helper
   Handlebars.registerHelper('compose', function(context, options) {
     options = _.extend(context, options);
     var hash = options.hash || {};
@@ -36,6 +43,9 @@ module.exports.register = function (Handlebars, options, params) {
     var result = '';
     var data;
     var ctx = _.extend(grunt.config.data, opts, this);
+
+    // Define marked.js options
+    marked.setOptions(markedOpts);
 
     // Add some src variables to the context
     ctx.dir = path.dirname(ctx.page.src || '');
@@ -136,7 +146,7 @@ module.exports.register = function (Handlebars, options, params) {
         var glob_fn = Handlebars.compile(content);
         data.content = glob_fn(ctx).replace(/^\s+/, '');
 
-        if(opts.compose.marked && opts.compose.marked.process === true) {
+        if((opts.marked && opts.marked.process === true) || hash.markdown) {
           data.content = marked(data.content);
         }
 

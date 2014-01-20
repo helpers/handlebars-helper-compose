@@ -29,10 +29,12 @@
     "underscore.string": "~2.3.3",
     "time-grunt": "~0.2.8",
     "yfm": "~0.1.0",
-    "marked": "~0.3.0"
+    "marked": "~0.3.0",
+    "marked-extras": "~0.1.1"
   },
   "devDependencies": {
     "assemble": "~0.4.34",
+    "assemble-contrib-permalinks": "~0.3.2",
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.8.0",
@@ -40,13 +42,14 @@
     "grunt-repos": "~0.1.2",
     "grunt-sync-pkg": "~0.1.2",
     "handlebars-helper-prettify": "~0.2.1",
-    "assemble-contrib-permalinks": "~0.3.2"
+    "handlebars-helper-slugify": "~0.2.0"
   },
   "keywords": [
     "convenience methods",
     "filter",
     "handlebars helper",
     "handlebars-helper-prettify",
+    "handlebars-helper-slugify",
     "helper",
     "partial",
     "include",

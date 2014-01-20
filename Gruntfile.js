@@ -45,8 +45,7 @@ module.exports = function(grunt) {
           flatten: false,
           compose: {
             sortBy: 'title',
-            sortOrder: 'desc',
-            process: true
+            sortOrder: 'desc'
           }
         },
         files: [{
@@ -58,14 +57,26 @@ module.exports = function(grunt) {
         }]
       },
 
-      // No options defined
+      // Should convert markdown to HTML and use a
+      // custom template for headings (anchors)
+      markdown: {
+        options: {
+          marked: {
+            process: true,
+            heading: 'test/heading.tmpl'
+          }
+        },
+        src: ['<%= config.pages %>/markdown-*.md'],
+        dest: '<%= config.dest %>/md/'
+      },
+
+      // Should
       dynamic_src_dest_pairings: {
         options: {
           flatten: false,
           compose: {
             sortBy: 'title',
-            sortOrder: 'desc',
-            process: true
+            sortOrder: 'desc'
           }
         },
         expand: true,
@@ -75,7 +86,7 @@ module.exports = function(grunt) {
         ext: '.html'
       },
 
-      // No options defined
+      // Should filter src files using custom function
       filter_fn: {
         options: {
           flatten: false,
@@ -84,8 +95,7 @@ module.exports = function(grunt) {
               return arr.slice(Math.max(arr.length - 2, 0));
             },
             sortBy: 'title',
-            sortOrder: 'desc',
-            process: true
+            sortOrder: 'desc'
           }
         },
         files: [{
@@ -97,6 +107,9 @@ module.exports = function(grunt) {
         }]
       },
 
+      // Should process templates in different contexts
+      // Should also render code comment with template
+      // origin above each include
       context: {
         options: {
           compose: {

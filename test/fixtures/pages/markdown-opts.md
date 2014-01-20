@@ -1,6 +1,7 @@
 ---
+layout: vanilla
 title: Markdown
-description: Should process markdown using markdown handlebars helper
+description: Should process markdown using options
 ---
 
 <div class="docs-section">
@@ -12,17 +13,12 @@ description: Should process markdown using markdown handlebars helper
 
 
 <!-- post -->
-{{#compose src="book/*.md"}}
+{{#compose src="<%= config.posts %>/markdown.md"}}
   <a class="anchor" href="#{{@id}}"></a>
-  <h2 class="blog-title">{{blog.title}}</h2>
-  <h3 class="post-title" id="{{@slug}}">Post title: {{title}}</h3>
-
-  <p class="content">
-  {{#markdown}}
+  <h3 class="post-title" id="{{@slug}}">{{title}}</h3>
+  <p class="post-content">
     {{{@content}}}
-  {{/markdown}}
   </p>
-
   <ul class="tags">
   {{#tags}}
     <li>{{.}}</li>

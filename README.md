@@ -58,35 +58,42 @@ heading: <%= blog.title %> | Blog <%= post %>
 ### src
 Type: `String` (optional)
 
-Default value: `undefined`
+Default: `undefined`
 
 The file path of the file(s) to include. Glob patterns may be used.
 
 ### cwd
 Type: `String` (optional)
 
-Default value: `undefined`
+Default: `undefined`
 
 The `cwd` for paths defined in the helper.
 
 ### sep
 Type: `String`
 
-Default value: `\n`
+Default: `\n`
+
+The separator to append after each inlined file.
+
+### marked
+Type: `Object`
+
+Default: `\n`
 
 The separator to append after each inlined file.
 
 ### filter
 Type: `function`
 
-Default value: `undefined`
+Default: `undefined`
 
 A custom function for filtering the array of paths returned from the `src` property. This could potentially be more flexible, please make a feature request if you have a use case.
 
 ### compare
 Type: `Function`
 
-Default value: `function(a, b) {return a.index >= b.index ? 1 : -1;}`
+Default: `function(a, b) {return a.index >= b.index ? 1 : -1;}`
 
 Compare function for sorting the aggregated files.
 
