@@ -28,7 +28,8 @@
     "globule": "~0.2.0",
     "underscore.string": "~2.3.3",
     "time-grunt": "~0.2.8",
-    "yfm": "~0.1.0"
+    "yfm": "~0.1.0",
+    "marked": "~0.3.0"
   },
   "devDependencies": {
     "assemble": "~0.4.34",

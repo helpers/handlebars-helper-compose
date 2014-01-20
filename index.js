@@ -13,6 +13,7 @@ var path = require('path');
 // node_modules
 var file = require('fs-utils');
 var glob = require('globule');
+var marked = require('marked');
 var yfm = require('yfm');
 var _str = require('underscore.string');
 var _ = require('lodash');
@@ -134,6 +135,10 @@ module.exports.register = function (Handlebars, options, params) {
         // Content from src files
         var glob_fn = Handlebars.compile(content);
         data.content = glob_fn(ctx).replace(/^\s+/, '');
+
+        if(opts.compose.marked && opts.compose.marked.process === true) {
+          data.content = marked(data.content);
+        }
 
         // Content from inside the block
         var output = options.fn(ctx, {data: data});
