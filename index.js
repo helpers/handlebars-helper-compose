@@ -25,11 +25,12 @@ module.exports.register = function (Handlebars, options, params) {
 
   var grunt = params.grunt;
   var opts = options || {};
+
   opts.compose = opts.compose || {};
-  options.marked = options.marked || {};
+  var customMarkedOpts = _.extend(options.marked || {});
 
   extras.init(options.marked);
-  var markedOpts = _.defaults(options.marked, extras.markedDefaults);
+  var markedOpts = _.defaults(customMarkedOpts, extras.markedDefaults);
 
 
   // The {{compose}} helper
