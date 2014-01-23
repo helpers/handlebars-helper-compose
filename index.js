@@ -29,7 +29,7 @@ module.exports.register = function (Handlebars, options, params) {
   opts.compose = opts.compose || {};
   var customMarkedOpts = _.extend(options.marked || {});
 
-  extras.init(options.marked);
+  extras.init(customMarkedOpts);
   var markedOpts = _.defaults(customMarkedOpts, extras.markedDefaults);
 
 
