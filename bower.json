@@ -1,6 +1,6 @@
 {
   "name": "handlebars-helper-compose",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "main": [
     "./index.js"
   ]
