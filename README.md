@@ -9,7 +9,7 @@ In the root of your project, run the following in the command line:
 npm i handlebars-helper-compose --save-dev
 ```
 
-Next, in your Gruntfile, simply add `helper-compose` to the `helpers` property in the [Assemble](http://assemble.io) task or target options:
+Next, in your Gruntfile, simply add `handlebars-helper-compose` to the `helpers` property in the [Assemble](http://assemble.io) task or target options:
 
 ```javascript
 grunt.initConfig({
