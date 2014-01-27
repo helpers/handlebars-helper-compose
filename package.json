@@ -27,7 +27,7 @@
     "globule": "~0.2.0",
     "lodash": "~2.4.0",
     "marked": "~0.3.0",
-    "marked-extras": "~0.1.1",
+    "marked-extras": "~0.2.0",
     "time-grunt": "~0.2.8",
     "underscore.string": "~2.3.3",
     "yfm": "~0.1.0"
