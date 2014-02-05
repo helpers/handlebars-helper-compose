@@ -17,7 +17,7 @@ var file   = require('fs-utils');
 var glob   = require('globule');
 var marked = require('marked');
 var extras = require('marked-extras');
-var yfm    = require('yfm');
+var matter = require('gray-matter');
 var _str   = require('underscore.string');
 var _      = require('lodash');
 
@@ -95,8 +95,8 @@ module.exports.register = function (Handlebars, options, params) {
 
         i += 1;
 
-        var content = yfm(filepath).content || '';
-        var metadata = yfm(filepath).context || {};
+        var content = matter.read(filepath).content || '';
+        var metadata = matter.read(filepath).context || {};
 
         /**
          * Process context from last to first, with #1 winning over other contexts.
