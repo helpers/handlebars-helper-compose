@@ -7,7 +7,7 @@
  * Licensed under the MIT license.
  */
 
-module.exports = function(grunt) {
+module.exports = grunt => {
   'use strict';
 
   require('time-grunt')(grunt);
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
         options: {
           flatten: false,
           compose: {
-            filter: function(arr) {
+            filter(arr) {
               return arr.slice(Math.max(arr.length - 2, 0));
             },
             sortBy: 'title',
@@ -211,7 +211,7 @@ module.exports = function(grunt) {
           compose: {
             cwd: '<%= config.book %>',
             sep: '<!-- chapter -->',
-            compare: function(a, b) {
+            compare(a, b) {
               return a.data.index >= b.data.index ? 1 : -1;
             }
           }
@@ -226,7 +226,7 @@ module.exports = function(grunt) {
           compose: {
             cwd: '<%= config.book %>',
             sep: '<!-- chapter -->',
-            compare: function(a, b) {
+            compare(a, b) {
               return a.data.custom >= b.data.custom ? 1 : -1;
             }
           }
@@ -241,7 +241,7 @@ module.exports = function(grunt) {
           compose: {
             cwd: '<%= config.book %>',
             sep: '<!-- chapter -->',
-            compare: function(a, b) {
+            compare(a, b) {
               return a.data.chapter >= b.data.chapter ? 1 : -1;
             },
             debug: 'tmp/obj.json'
