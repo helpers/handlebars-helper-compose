@@ -21,7 +21,7 @@ var matter = require('gray-matter');
 var _str   = require('underscore.string');
 var _      = require('lodash');
 
-module.exports.register = function (Handlebars, options, params) {
+module.exports.register = (Handlebars, options, params) => {
 
   var grunt = params.grunt;
   var opts = options || {};
@@ -70,7 +70,7 @@ module.exports.register = function (Handlebars, options, params) {
      * @param  {Object} b
      * @return {Number} returns 1 if (a >= b), otherwise -1
      */
-    var compareFn = function (a, b) {
+    var compareFn = (a, b) => {
       var opts = _.extend({sortOrder: 'asc', sortBy: 'index'}, options);
 
       a = a.data[opts.sortBy];
@@ -84,14 +84,14 @@ module.exports.register = function (Handlebars, options, params) {
       return result;
     };
 
-    patterns.forEach(function (pattern) {
+    patterns.forEach(pattern => {
       var files = glob.find(cwd(pattern), options.glob);
 
       if(options.filter) {
         files = options.filter(files);
       }
 
-      var src = files.map(function (filepath) {
+      var src = files.map(filepath => {
 
         i += 1;
 
@@ -152,7 +152,7 @@ module.exports.register = function (Handlebars, options, params) {
         }
 
         // Content from inside the block
-        var output = options.fn(ctx, {data: data});
+        var output = options.fn(ctx, {data});
 
         // Prepend output with the filepath to the original partial
         if (options.origin && options.origin === true) {
@@ -160,10 +160,10 @@ module.exports.register = function (Handlebars, options, params) {
         }
 
         return {
-          data: data,
+          data,
           content: output
         };
-      }).sort(options.compare || compareFn).map(function (obj) {
+      }).sort(options.compare || compareFn).map(obj => {
         if(options.debug) {file.writeDataSync(options.debug, obj);}
 
         // Return content from src files
@@ -178,7 +178,7 @@ module.exports.register = function (Handlebars, options, params) {
   /**
    * Process templates using grunt.config.data and context
    */
-  var processContext = function (grunt, context) {
+  var processContext = (grunt, context) => {
     grunt.config.data = _.defaults(context || {}, _.cloneDeep(grunt.config.data));
     return grunt.config.process(grunt.config.data);
   };
